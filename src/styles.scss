@@ -60,3 +60,53 @@ body {
     }
   }
 }
+
+.foundation {
+  //GENERAL IMPORTS AND INCLUDES
+  @import '~foundation-sites/scss/foundation';
+  @include foundation-global-styles;
+  @include foundation-typography;
+  @include foundation-button;
+
+  button,
+  a[role='button'],
+  input[type='button'] {
+    @extend .button !optional;
+    &.block {
+      @extend .expanded !optional;
+    }
+    &.outline {
+      @extend .hollow !optional;
+    }
+    &.close {
+      @extend .close-button !optional;
+    }
+  }
+}
+
+.fundamental-ui {
+  $fd-scss-icons-path: '~fundamental-ui/scss/icons/';
+  $fd-fonts-path: '~fundamental-ui/scss/fonts/';
+  @import '../node_modules/fundamental-ui/scss/all.scss';
+
+  button,
+  input[type='button'] {
+    @extend .fd-button !optional;
+    &:not(.outline) {
+      @extend .fd-button--action-bar !optional;
+    }
+    &.outline {
+      @extend .fd-button !optional;
+    }
+    &.large {
+      @extend .fd-button--l !optional;
+    }
+    &.small {
+      @extend .fd-button--s !optional;
+    }
+  }
+
+  a[role='button'] {
+    @extend .fd-link !optional;
+  }
+}
