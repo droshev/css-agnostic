@@ -1,14 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-  margin: 10px;
+  // padding: 10px;
   font-family: 'Open Sans';
 }
 
 /* material */
 .materialize {
   $font-stack: 'Open Sans';
-  @import '../node_modules/materialize-css/sass/materialize.scss';
+  @import '~materialize-css/sass/materialize.scss';
 
   button,
   a[role='button'],
@@ -30,11 +30,14 @@ body {
     &.flat {
       @extend .btn-link, .waves-teal !optional;
     }
+    &.close {
+      @extend .close-button !optional;
+    }
   }
 }
 
 .bootstrap {
-  @import '../node_modules/bootstrap/scss/bootstrap.scss';
+  @import '~bootstrap/scss/bootstrap.scss';
 
   button,
   a[role='button'],
