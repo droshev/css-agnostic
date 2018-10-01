@@ -1,3 +1,27 @@
-<div>
-    <button>button</button>
+<div [class]="type">
+    <h1>{{type}}</h1>
+
+    <div>
+        Buttons sizes
+
+        <button class="large">button</button>
+        <button>button</button>
+        <button class="small">button</button>
+    </div>
+    <div>
+        button types:
+
+        <button>button</button>
+        <button class="outline">outline button</button>
+        <button class="block">block button</button>
+        <a class="flat">flat button</a>
+    </div>
+    <div>
+        misc
+        <button disabled>button</button>
+        <a role="button">Link</a>
+        <a role="button" disabled>Link</a>
+        <input type="button" value="Input">
+        <input type="button" disabled value="Input">
+    </div>
 </div>

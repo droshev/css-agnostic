@@ -8,15 +8,50 @@ body {
 .materialize {
   @import '../node_modules/materialize-css/sass/materialize.scss';
 
-  button {
-    @extend .waves-effect, .waves-light, .btn !optional;
+  button,
+  a[role='button'],
+  input[type='button'] {
+    @extend .waves-effect !optional;
+    &:not(.flat) {
+      @extend .waves-light, .btn !optional;
+    }
+    &.large {
+      @extend .btn-large !optional;
+    }
+    &.small {
+      @extend .btn-small !optional;
+    }
+    &.block {
+      display: block;
+      width: 100%;
+    }
+    &.flat {
+      @extend .btn-link, .waves-teal !optional;
+    }
   }
 }
 
 .bootstrap {
   @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
-  button {
+  button,
+  a[role='button'],
+  input[type='button'] {
     @extend .btn, .btn-primary !optional;
+    &.large {
+      @extend .btn-lg !optional;
+    }
+    &.small {
+      @extend .btn-sm !optional;
+    }
+    &.outline {
+      @extend .btn-outline-primary !optional;
+    }
+    &.block {
+      @extend .btn-block !optional;
+    }
+    &.flat {
+      @extend .btn-flat !optional;
+    }
   }
 }

@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-plain',
   templateUrl: './plain.component.html',
   styleUrls: ['./plain.component.scss']
 })
-export class PlainComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class PlainComponent {
+  @Input()
+  type: string;
 }
