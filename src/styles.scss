@@ -2,10 +2,12 @@
 
 body {
   margin: 10px;
+  font-family: 'Open Sans';
 }
 
 /* material */
 .materialize {
+  $font-stack: 'Open Sans';
   @import '../node_modules/materialize-css/sass/materialize.scss';
 
   button,
