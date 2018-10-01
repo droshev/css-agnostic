@@ -105,8 +105,45 @@ body {
       @extend .fd-button--s !optional;
     }
   }
+  &.outline {
+    @extend .is-outlined !optional;
+  }
 
   a[role='button'] {
     @extend .fd-link !optional;
+  }
+}
+
+.bulma {
+  @import '../node_modules/bulma/bulma.sass';
+  // @import '../node_modules/bulma/sass/elements/button.sass';
+  h1 {
+    @extend .is-size-1 !optional;
+  }
+  h2 {
+    @extend .is-size-2 !optional;
+  }
+  h3 {
+    @extend .is-size-3 !optional;
+  }
+  h4 {
+    @extend .is-size-4 !optional;
+  }
+  button,
+  a[role='button'],
+  input[type='button'] {
+    @extend .button, .is-primary !optional;
+    &.large {
+      @extend .is-large !optional;
+    }
+    &.small {
+      @extend .is-small !optional;
+    }
+    &.block {
+      @extend .is-fullwidth !optional;
+    }
+    &.flat {
+      @extend .is-text !optional;
+    }
   }
 }
