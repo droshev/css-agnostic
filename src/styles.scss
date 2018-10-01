@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 10px;
+}
+
+/* material */
+.materialize {
+  @import '../node_modules/materialize-css/sass/materialize.scss';
+
+  button {
+    @extend .waves-effect, .waves-light, .btn !optional;
+  }
+}
+
+.bootstrap {
+  @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+  button {
+    @extend .btn, .btn-primary !optional;
+  }
+}
