@@ -5,10 +5,18 @@ body {
   font-family: 'Open Sans';
 }
 
+$primary: #ff00aa;
+$primary-color: $primary;
+// $fd-colors-primary: $primary;
+// $fd-colors: (
+//   'primary': $primary
+// );
+
 /* material */
 .materialize {
+  $secondary-color: $primary;
   $font-stack: 'Open Sans';
-  @import '~materialize-css/sass/materialize.scss';
+  @import '../node_modules/materialize-css/sass/materialize.scss';
 
   button,
   a[role='button'],
@@ -62,6 +70,14 @@ body {
 }
 
 .foundation {
+  $foundation-palette: (
+    primary: $primary,
+    secondary: #767676,
+    success: #3adb76,
+    warning: #ffae00,
+    alert: #cc4b37
+  );
+
   //GENERAL IMPORTS AND INCLUDES
   @import '~foundation-sites/scss/foundation';
   @include foundation-global-styles;
@@ -87,6 +103,10 @@ body {
 .fundamental-ui {
   $fd-scss-icons-path: '~fundamental-ui/scss/icons/';
   $fd-fonts-path: '~fundamental-ui/scss/fonts/';
+  $fd-colors-action: (
+    1: $primary
+  );
+
   @import '../node_modules/fundamental-ui/scss/all.scss';
 
   button,
@@ -102,7 +122,7 @@ body {
       @extend .fd-button--l !optional;
     }
     &.small {
-      @extend .fd-button--s !optional;
+      @extend .fd-button--xs !optional;
     }
   }
   &.outline {
