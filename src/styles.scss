@@ -4,7 +4,7 @@ body {
   font-family: 'Open Sans';
 }
 
-$primary: #ff00aa;
+$primary: rgb(96, 125, 139);
 $primary-color: $primary;
 
 /* material */
@@ -92,6 +92,11 @@ $primary-color: $primary;
       }
     }
   }
+
+  // alert
+  [role='alert'] {
+    @extend .alert, .alert-primary !optional;
+  }
 }
 
 .foundation {
@@ -109,6 +114,7 @@ $primary-color: $primary;
   @include foundation-typography;
   @include foundation-button;
   @include foundation-tabs;
+  @include foundation-callout;
 
   button,
   a[role='button'],
@@ -135,6 +141,11 @@ $primary-color: $primary;
         }
       }
     }
+  }
+
+  // alert
+  [role='alert'] {
+    @extend .callout !optional;
   }
 }
 
@@ -180,6 +191,17 @@ $primary-color: $primary;
     &:disabled,
     &[disabled] {
       @extend .is-disabled !optional;
+    }
+  }
+
+  // alert
+  [role='alert'] {
+    @extend .fd-alert !optional;
+    &:has([role='close']) {
+      @extend .fd-alert--dismissible !optional;
+    }
+    [role='close'] {
+      @extend .fd-alert__close !optional;
     }
   }
 }
@@ -228,5 +250,10 @@ $primary-color: $primary;
 
   .tabs li.active {
     @extend .is-active !optional;
+  }
+
+  // alert
+  [role='alert'] {
+    @extend .message !optional;
   }
 }

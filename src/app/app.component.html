@@ -11,11 +11,21 @@
             <li [class.active]="activePanel === 'typography'">
                 <a (click)="activePanel = 'typography'">Typography</a>
             </li>
+            <li [class.active]="activePanel === 'alert'">
+                <a (click)="activePanel = 'alert'">Alert</a>
+            </li>
             <li disabled>
                 <a>others</a>
             </li>
         </ul>
     </div>
+
+    <section *ngIf="activePanel==='alert'">
+        <div role="alert">
+            <button role="close"></button>
+            A simple primary alert—check it out!
+        </div>
+    </section>
 
     <section *ngIf="activePanel==='buttons'">
         <app-buttons></app-buttons>
