@@ -41,6 +41,16 @@ $primary-color: $primary;
       content: ' (outline not available)';
     }
   }
+
+  .tabs {
+    @extend .z-depth-1 !optional;
+    ul {
+      @extend .tabs !optional;
+      li {
+        @extend .tab, .col, .s3 !optional;
+      }
+    }
+  }
 }
 
 .bootstrap {
@@ -65,9 +75,22 @@ $primary-color: $primary;
       @extend .btn-flat !optional;
     }
   }
-
   a[role='button'] {
     @extend .btn, .btn-link !optional;
+  }
+
+  // tabs
+  .tabs ul {
+    @extend .nav, .nav-tabs !optional;
+    li {
+      @extend .nav-item !optional;
+      a {
+        @extend .nav-link !optional;
+      }
+      &.active a {
+        @extend .active !optional;
+      }
+    }
   }
 }
 
@@ -85,6 +108,7 @@ $primary-color: $primary;
   @include foundation-global-styles;
   @include foundation-typography;
   @include foundation-button;
+  @include foundation-tabs;
 
   button,
   a[role='button'],
@@ -98,6 +122,18 @@ $primary-color: $primary;
     }
     &.close {
       @extend .close-button !optional;
+    }
+  }
+
+  .tabs {
+    ul {
+      @extend .tabs !optional;
+      li {
+        @extend .tabs-title !optional;
+        &.active {
+          @extend .is-active !optional;
+        }
+      }
     }
   }
 }
@@ -188,5 +224,9 @@ $primary-color: $primary;
     &.active {
       @extend .is-active !optional;
     }
+  }
+
+  .tabs li.active {
+    @extend .is-active !optional;
   }
 }

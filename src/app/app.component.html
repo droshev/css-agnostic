@@ -1,5 +1,28 @@
-<app-plain type="materialize"></app-plain>
+<!-- <app-plain type="materialize"></app-plain>
 <app-plain type="bootstrap"></app-plain>
 <app-plain type="foundation"></app-plain>
 <app-plain type="fundamental-ui"></app-plain>
-<app-plain type="bulma"></app-plain>
+<app-plain type="bulma"></app-plain> -->
+
+
+<div *ngFor="let ui of uiSystems" [class]="ui">
+    <h1>UI Framework "{{ui}}"</h1>
+
+    <div class="tabs">
+        <ul>
+            <li [class.active]="activePanel === 'buttons'">
+                <a (click)="activePanel = 'buttons'">Buttons</a>
+            </li>
+            <li [class.active]="activePanel === 'typography'">
+                <a (click)="activePanel = 'typography'">Typography</a>
+            </li>
+            <li disabled>
+                <a href="#test1">else</a>
+            </li>
+        </ul>
+    </div>
+
+    <app-buttons *ngIf="activePanel==='buttons'"></app-buttons>
+    <app-typography *ngIf="activePanel==='typography'"></app-typography>
+
+</div>

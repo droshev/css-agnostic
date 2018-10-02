@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'css-agnostic';
+  uiSystems = ['materialize', 'bootstrap', 'bulma', 'foundation', 'fundamental-ui'];
+  activePanel = 'buttons';
 }
