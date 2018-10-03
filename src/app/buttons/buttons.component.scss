@@ -1,6 +1,7 @@
-div {
-  margin: 10px;
-  * {
-    margin: 5px;
-  }
+div > * {
+  margin: 5px;
+}
+h4 {
+  font-size: 2em;
+  margin-top: 1em;
 }

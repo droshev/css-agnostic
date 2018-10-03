@@ -1,36 +1,76 @@
 <div>
-  Buttons sizes
+  <h4>Types</h4>
+  <button>standard</button>
+  <button class="outline">outline</button>
+  <a role="button">Link</a>
+</div>
 
+<div>
+  <h4>Size</h4>
   <button class="small">button</button>
   <button>button</button>
   <button class="large">button</button>
 </div>
+
 <div>
-  button types:
+  <h4>Icons buttons</h4>
+  <select (change)="iconLib = $event">
+    <option value="fa">Font Awesome</option>
+    <option value="mat">Material</option>
+    <option value="fi">Foundation</option>
+  </select>
+  <br />
+  <button class="small">
+    <i class="trash"></i> Trash
+  </button>
+  <button class="outline">
+    <i class="search"></i> font awesome
+  </button>
+  <button class="large">
+    <i class="shoppingcart"></i> Shopping cart
+  </button>
 
-  <button>standard</button>
-  <button class="outline">outline</button>
-  <a role="button">Link</a>
+  <!-- <br />
+  <button class="small">
+    <i class="material-icons" style="vertical-align: middle">delete</i> Trash
+  </button>
+  <button class="outline">
+    <i class="material-icons" style="vertical-align: middle">search</i> google material
+  </button>
+  <button class="large">
+    <i class="material-icons" style="vertical-align: middle">shopping_cart</i> Shopping cart
+  </button>
 
+  <br />
+  <button class="small">
+    <i class="fi-trash"></i> Trash
+  </button>
+  <button class="outline">
+    <i class="fi-magnifying-glass"></i> foundation
+  </button>
+  <button class="large">
+    <i class="fi-shopping-cart"></i> Shopping cart
+  </button> -->
+
+</div>
+
+<div>
+
+  <h4>Sizes</h4>
   <button class="block small">small block</button>
   <button class="block">block</button>
   <button class="block large outline">outline large block</button>
-  <button class="close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <a class="flat">flat</a>
+
 </div>
 
+
 <div>
-  button states
+  <h4>States</h4>
   <button class="active">active</button>
   <button class="passive">passive</button>
   <button disabled>disabled</button>
-</div>
-
-<div>
-  misc
   <a role="button" disabled>disabled link</a>
   <input type="button" value="input">
   <input type="button" disabled value="disabled input">
+  <a class="flat">flat</a>
 </div>

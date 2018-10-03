@@ -30,5 +30,5 @@ export class AppComponent {
     }
   ];
   activeUI = this.systems[0].label;
-  activePanel = 'alert';
+  activePanel = 'buttons';
 }

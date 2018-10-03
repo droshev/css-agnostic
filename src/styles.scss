@@ -7,96 +7,14 @@ body {
 $primary: rgb(96, 125, 139);
 $primary-color: $primary;
 
-/* material */
-.materialize {
-  $secondary-color: $primary; // this is a bit weird indeed...
-
-  $font-stack: 'Open Sans';
-  @import '../node_modules/materialize-css/sass/materialize.scss';
-
-  button,
-  a[role='button'],
-  input[type='button'] {
-    @extend .waves-effect !optional;
-    &:not(.flat) {
-      @extend .waves-light, .btn !optional;
-    }
-    &.large {
-      @extend .btn-large !optional;
-    }
-    &.small {
-      @extend .btn-small !optional;
-    }
-    &.block {
-      display: block;
-      width: 100%;
-    }
-    &.flat {
-      @extend .btn-link, .waves-teal !optional;
-    }
-    &.close {
-      @extend .close-button !optional;
-    }
-    &.outline:after {
-      content: ' (outline not available)';
-    }
-  }
-
-  .tabs {
-    @extend .z-depth-1 !optional;
-    ul {
-      @extend .tabs !optional;
-      li {
-        @extend .tab, .col, .s3 !optional;
-      }
-    }
-  }
+.bootstrap {
+  @import '../../agnos/scss/bootstrap';
+  @include _bootstrap($button: true, $alert: true, $tabs: true, $typography: true);
 }
 
-.bootstrap {
-  @import '~bootstrap/scss/bootstrap.scss';
-
-  button,
-  input[type='button'] {
-    @extend .btn, .btn-primary !optional;
-    &.large {
-      @extend .btn-lg !optional;
-    }
-    &.small {
-      @extend .btn-sm !optional;
-    }
-    &.outline {
-      @extend .btn-outline-primary !optional;
-    }
-    &.block {
-      @extend .btn-block !optional;
-    }
-    &.flat {
-      @extend .btn-flat !optional;
-    }
-  }
-  a[role='button'] {
-    @extend .btn, .btn-link !optional;
-  }
-
-  // tabs
-  .tabs ul {
-    @extend .nav, .nav-tabs !optional;
-    li {
-      @extend .nav-item !optional;
-      a {
-        @extend .nav-link !optional;
-      }
-      &.active a {
-        @extend .active !optional;
-      }
-    }
-  }
-
-  // alert
-  [role='alert'] {
-    @extend .alert, .alert-primary !optional;
-  }
+.bulma {
+  @import '../../agnos/scss/bulma';
+  @include _bulma($button: true, $alert: true, $tabs: true, $typography: true);
 }
 
 .foundation {
@@ -107,153 +25,21 @@ $primary-color: $primary;
     warning: #ffae00,
     alert: #cc4b37
   );
+  @import '../../agnos/scss/foundation';
+  @include _foundation($button: true, $alert: true, $tabs: true, $typography: true);
+}
 
-  //GENERAL IMPORTS AND INCLUDES
-  @import '~foundation-sites/scss/foundation';
-  @include foundation-global-styles;
-  @include foundation-typography;
-  @include foundation-button;
-  @include foundation-tabs;
-  @include foundation-callout;
-
-  button,
-  a[role='button'],
-  input[type='button'] {
-    @extend .button !optional;
-    &.block {
-      @extend .expanded !optional;
-    }
-    &.outline {
-      @extend .hollow !optional;
-    }
-    &.close {
-      @extend .close-button !optional;
-    }
-  }
-
-  .tabs {
-    ul {
-      @extend .tabs !optional;
-      li {
-        @extend .tabs-title !optional;
-        &.active {
-          @extend .is-active !optional;
-        }
-      }
-    }
-  }
-
-  // alert
-  [role='alert'] {
-    @extend .callout !optional;
-  }
+.materialize {
+  $secondary-color: $primary;
+  @import '../../agnos/scss/materialize';
+  @include _materialize($button: true, $alert: true, $tabs: true, $typography: true);
 }
 
 .fundamental-ui {
-  $fd-scss-icons-path: '~fundamental-ui/scss/icons/';
-  $fd-fonts-path: '~fundamental-ui/scss/fonts/';
   $fd-colors-action: (
     1: $primary
   );
 
-  @import '../node_modules/fundamental-ui/scss/all.scss';
-
-  button,
-  input[type='button'] {
-    @extend .fd-button !optional;
-    &:not(.outline) {
-      @extend .fd-button--action-bar !optional;
-    }
-    &.outline {
-      @extend .fd-button !optional;
-    }
-    &.large {
-      @extend .fd-button--l !optional;
-    }
-    &.small {
-      @extend .fd-button--xs !optional;
-    }
-
-    &.block {
-      display: block;
-      width: 100%;
-    }
-    &.active {
-      @extend .is-selected !optional;
-    }
-  }
-  &.outline {
-    @extend .is-outlined !optional;
-  }
-
-  a[role='button'] {
-    @extend .fd-link !optional;
-    &:disabled,
-    &[disabled] {
-      @extend .is-disabled !optional;
-    }
-  }
-
-  // alert
-  [role='alert'] {
-    @extend .fd-alert !optional;
-    &:has([role='close']) {
-      @extend .fd-alert--dismissible !optional;
-    }
-    [role='close'] {
-      @extend .fd-alert__close !optional;
-    }
-  }
-}
-
-.bulma {
-  @import '../node_modules/bulma/bulma.sass';
-  // @import '../node_modules/bulma/sass/elements/button.sass';
-  h1 {
-    @extend .is-size-1 !optional;
-  }
-  h2 {
-    @extend .is-size-2 !optional;
-  }
-  h3 {
-    @extend .is-size-3 !optional;
-  }
-  h4 {
-    @extend .is-size-4 !optional;
-  }
-  button,
-  a[role='button'],
-  input[type='button'] {
-    @extend .button !optional;
-    &:not([disabled]) {
-      @extend .is-primary !optional;
-    }
-    &.large {
-      @extend .is-large !optional;
-    }
-    &.small {
-      @extend .is-small !optional;
-    }
-    &.block {
-      @extend .is-fullwidth !optional;
-    }
-    &.flat {
-      @extend .is-text !optional;
-    }
-    &.outline {
-      @extend .is-outlined !optional;
-    }
-    &.active {
-      @extend .is-active !optional;
-    }
-  }
-
-  .tabs li.active {
-    @extend .is-active !optional;
-  }
-
-  // alert
-  [role='alert'] {
-    @extend .message !optional;
-  }
+  @import '../../agnos/scss/fundamental-ui';
+  @include _fundamental_ui($button: true, $alert: true, $tabs: true, $typography: true);
 }
