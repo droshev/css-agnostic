@@ -1,0 +1,82 @@
+$component-count: (
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 6,
+  7: 7,
+  8: 8,
+  9: 9
+) !default;
+
+.cx-layout-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  & > * {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+}
+
+@each $cmp_count in map-values($map: $component-count) {
+  .cx-layout-#{$cmp_count}-horizontal-components {
+    @extend .cx-layout-horizontal;
+
+    & > * {
+      flex-basis: unquote((100 / $cmp_count) + '%');
+      max-width: unquote((100 / $cmp_count) + '%');
+    }
+  }
+}
+
+.cx-layout2 {
+  display: flex;
+  flex-direction: column;
+}
+.cx-layout3 {
+}
+.cx-layout4 {
+}
+.cx-layout5 {
+}
+
+//------------------------
+
+.layour-wrapper {
+  margin: 20px 0;
+  max-width: 50%;
+  border: 3px dashed lightcyan;
+}
+
+.image {
+  height: 400px;
+}
+
+.image1 {
+  background-image: url('https://placeimg.com/1200/400/arch');
+}
+.image2 {
+  background-image: url('https://placeimg.com/1200/400/tech');
+}
+.image3 {
+  background-image: url('https://placeimg.com/1200/400/nature');
+}
+.image4 {
+  background-image: url('https://placeimg.com/1200/400/animals');
+}
+.image5 {
+  background-image: url('https://placeimg.com/1200/400/people');
+}
+.image6 {
+  background-image: url('https://placeimg.com/1200/400/nature/sepia');
+}
+.image7 {
+  background-image: url('https://placeimg.com/2000/400/animals/grayscale');
+}
+.image8 {
+  background-image: url('https://placeimg.com/2000/400/tech/sepia');
+}
+.image9 {
+  background-image: url('https://placeimg.com/2000/400/people/sepia');
+}

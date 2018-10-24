@@ -1,4 +1,7 @@
-<img [src]="ui.icon" *ngFor="let ui of systems" (click)="activeUI = ui.label" [class.active]="activeUI === ui.label" />
+<img [src]="ui.icon"
+     *ngFor="let ui of systems"
+     (click)="activeUI = ui.label"
+     [class.active]="activeUI === ui.label" />
 
 
 <div [class]="activeUI">
@@ -13,6 +16,9 @@
             </li>
             <li [class.active]="activePanel === 'alert'">
                 <a (click)="activePanel = 'alert'">Alert</a>
+            </li>
+            <li [class.active]="activePanel === 'layout'">
+                <a (click)="activePanel = 'layout'">Layout</a>
             </li>
             <li disabled>
                 <a>others</a>
@@ -33,6 +39,10 @@
 
     <section *ngIf="activePanel==='typography'">
         <app-typography></app-typography>
+    </section>
+
+    <section *ngIf="activePanel==='layout'">
+        <app-layout></app-layout>
     </section>
 
 

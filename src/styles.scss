@@ -9,12 +9,12 @@ $primary-color: $primary;
 
 .bootstrap {
   @import '../../agnos/scss/bootstrap';
-  @include _bootstrap($button: true, $alert: true, $tabs: true, $typography: true);
+  @include agnos($button: true, $alert: true, $tabs: true, $typography: true);
 }
 
 .bulma {
   @import '../../agnos/scss/bulma';
-  @include _bulma($button: true, $alert: true, $tabs: true, $typography: true);
+  @include agnos($button: true, $alert: true, $tabs: true, $typography: true);
 }
 
 .foundation {
@@ -26,13 +26,13 @@ $primary-color: $primary;
     alert: #cc4b37
   );
   @import '../../agnos/scss/foundation';
-  @include _foundation($button: true, $alert: true, $tabs: true, $typography: true);
+  @include agnos($button: true, $alert: true, $tabs: true, $typography: true);
 }
 
 .materialize {
   $secondary-color: $primary;
   @import '../../agnos/scss/materialize';
-  @include _materialize($button: true, $alert: true, $tabs: true, $typography: true);
+  @include agnos($button: true, $alert: true, $tabs: true, $typography: true);
 }
 
 .fundamental-ui {
@@ -41,5 +41,5 @@ $primary-color: $primary;
   );
 
   @import '../../agnos/scss/fundamental-ui';
-  @include _fundamental_ui($button: true, $alert: true, $tabs: true, $typography: true);
+  @include agnos($button: true, $alert: true, $tabs: true, $typography: true);
 }

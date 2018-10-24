@@ -9,16 +9,19 @@ export class AppComponent {
   systems = [
     {
       label: 'bootstrap',
-      icon: 'https://p14.zdassets.com/hc/settings_assets/1810307/115000215608/hkXSVzrjij0E80QkkJw67Q-logo.png'
+      icon:
+        'https://p14.zdassets.com/hc/settings_assets/1810307/115000215608/hkXSVzrjij0E80QkkJw67Q-logo.png'
     },
     {
       label: 'materialize',
-      icon: 'https://seeklogo.com/images/M/materialize-logo-0FCAD8A6F8-seeklogo.com.png'
+      icon:
+        'https://seeklogo.com/images/M/materialize-logo-0FCAD8A6F8-seeklogo.com.png'
     },
 
     {
       label: 'foundation',
-      icon: 'https://seeklogo.com/images/F/foundation-logo-AA9B725281-seeklogo.com.jpg'
+      icon:
+        'https://seeklogo.com/images/F/foundation-logo-AA9B725281-seeklogo.com.jpg'
     },
     {
       label: 'bulma',
@@ -30,5 +33,5 @@ export class AppComponent {
     }
   ];
   activeUI = this.systems[0].label;
-  activePanel = 'buttons';
+  activePanel = 'layout';
 }
