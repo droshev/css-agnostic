@@ -10,6 +10,27 @@ $component-count: (
   9: 9
 ) !default;
 
+// %cx-layout-horizontal {
+//   border: 2px dashed red;
+// }
+
+// %child {
+//   @extend %cx-layout-horizontal;
+// }
+
+// @mixin test {
+//   @extend %cx-layout-horizontal;
+// }
+
+// .real-child {
+//   @extend %child;
+// }
+// .test-class {
+//   @media (max-width: 1000px) {
+//     @include test();
+//   }
+// }
+
 .cx-layout-horizontal {
   display: flex;
   flex-wrap: wrap;
@@ -87,4 +108,136 @@ $component-count: (
 }
 .image9 {
   background-image: url('https://placeimg.com/2000/400/people/sepia');
+}
+
+// delete after testing
+$breakpoints: (
+  'small': 600px,
+  'medium': 900px,
+  'large': 1200px
+);
+$default-breakpoint: root;
+$current-breakpoint-low: $default-breakpoint;
+$current-breakpoint-up: $default-breakpoint;
+
+// Caching existing placeholders
+// Not meant to be manually edited
+$placeholders: ();
+
+@mixin breakpoint($lower, $upper) {
+  $lower-value: cx-breakpoint-min($lower, $breakpoints);
+  $upper-value: cx-breakpoint-max($upper, $breakpoints);
+
+  @warn ">>>>>--->>>>>>`#{$lower-value}`";
+  @if $lower-value != null and $upper-value != null {
+    $current-breakpoint-up: $upper-value !global;
+    $current-breakpoint-low: $lower-value !global;
+    @media (min-width: $lower-value) and (max-width: $upper-value) {
+      @content;
+    }
+    $current-breakpoint-up: $default-breakpoint !global;
+    $current-breakpoint-low: $default-breakpoint !global;
+  } @else if $upper-value == null {
+    $current-breakpoint-low: $lower-value !global;
+    @media (min-width: $lower-value) {
+      @content;
+    }
+    $current-breakpoint-low: $default-breakpoint !global;
+  } @else if $lower-value == null {
+    $current-breakpoint-up: $upper-value !global;
+    @media (max-width: $upper-value) {
+      @content;
+    }
+    $current-breakpoint-low: $default-breakpoint !global;
+  }
+}
+
+@mixin placeholder($name) {
+  @if not index($placeholders, $name) {
+    $placeholders: append($placeholders, $name) !global;
+
+    @at-root {
+      @each $breakpoint, $value in $breakpoints {
+        @media (min-width: $value) {
+          %#{$name}-#{$breakpoint} {
+            @content;
+          }
+        }
+      }
+
+      %#{$name}-#{$default-breakpoint} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin _($name) {
+  @warn "-------->>>`#{$current-breakpoint-up}`";
+  @extend %#{$name}-#{$current-breakpoint-up} !optional;
+  @extend %#{$name}-#{$current-breakpoint-low} !optional;
+}
+
+@include placeholder('cx-layout-3') {
+  border: 3px dashed pink;
+}
+@include placeholder('cx-layout-2') {
+  border: 3px dashed blue;
+}
+@include placeholder('cx-layout-4') {
+  border: 3px dashed black;
+}
+@include placeholder('cx-layout-1') {
+  border: 3px dashed yellow;
+}
+
+.c {
+  @include breakpoint(small, small) {
+    @include _(cx-layout-3);
+  }
+
+  @include breakpoint(medium, medium) {
+    @include _(cx-layout-1);
+  }
+  @include breakpoint(large, large) {
+    @include _(cx-layout-2);
+  }
+}
+
+@mixin cx-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  //temporary delegate to bootstrap
+  @include media-breakpoint-up($name, $breakpoints) {
+    @content;
+  }
+}
+@mixin cx-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  //temporary delegate to bootstrap
+  @include media-breakpoint-down($name, $breakpoints) {
+    @content;
+  }
+}
+
+@function cx-breakpoint-next(
+  $name,
+  $breakpoints: $grid-breakpoints,
+  $breakpoint-names: map-keys($breakpoints)
+) {
+  //temporary delegate to bootstrap
+  @return media-breakpoint-next($name, $breakpoints, $breakpoint-names);
+}
+
+@function cx-breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  //temporary delegate to bootstrap
+  @return media-breakpoint-min($name, $breakpoints);
+}
+
+@function cx-breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  //temporary delegate to bootstrap
+  @return media-breakpoint-max($name, $breakpoints);
+}
+
+@mixin cx-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  @include media-breakpoint-between($lower, $upper, $breakpoints) {
+    @content;
+  }
 }
