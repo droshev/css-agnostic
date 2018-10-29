@@ -10,6 +10,23 @@ $component-count: (
   9: 9
 ) !default;
 
+%cx-layout-horizontal {
+  border: 2px dashed red;
+}
+
+%child {
+  @extend %cx-layout-horizontal;
+}
+
+.real-child {
+  @extend %test;
+}
+%test {
+  @media (max-width: 1000px) {
+    @extend %cx-layout-horizontal;
+  }
+}
+
 .cx-layout-horizontal {
   display: flex;
   flex-wrap: wrap;
