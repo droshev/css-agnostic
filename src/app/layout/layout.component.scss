@@ -1,6 +1,6 @@
 @function cx-breakpoint-next(
   $name,
-  $breakpoints: $grid-breakpoints,
+  $breakpoints: $default-breakpoints,
   $breakpoint-names: map-keys($breakpoints)
 ) {
   $n: index($breakpoint-names, $name);
@@ -11,68 +11,86 @@
   );
 }
 
-@mixin cx-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
-  //temporary delegate to bootstrap
-  @include media-breakpoint-up($name, $breakpoints) {
+@mixin cx-breakpoint-up($name, $breakpoints: $default-breakpoints) {
+  $min: cx-breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
     @content;
   }
 }
-@mixin cx-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+@mixin cx-breakpoint-down($name, $breakpoints: $default-breakpoints) {
   //temporary delegate to bootstrap
   @include media-breakpoint-down($name, $breakpoints) {
     @content;
   }
 }
 
-@function cx-breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+@function cx-breakpoint-min($name, $breakpoints: $default-breakpoints) {
   $min: map-get($breakpoints, $name);
   @return if($min != 0, $min, null);
 }
 
-@function cx-breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+@function cx-breakpoint-max($name, $breakpoints: $default-breakpoints) {
   $next: cx-breakpoint-next($name, $breakpoints);
   @return if($next, cx-breakpoint-min($next, $breakpoints) - 0.02px, null);
 }
 
-@mixin cx-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+@mixin cx-breakpoint-between(
+  $lower,
+  $upper,
+  $breakpoints: $default-breakpoints
+) {
   @include media-breakpoint-between($lower, $upper, $breakpoints) {
     @content;
   }
 }
 
-// $component-count: (
-//   1: 1,
-//   2: 2,
-//   3: 3,
-//   4: 4,
-//   5: 5,
-//   6: 6,
-//   7: 7,
-//   8: 8,
-//   9: 9
-// ) !default;
+// delete after testing
+$default-breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px
+);
 
-// .cx-layout-horizontal {
-//   display: flex;
-//   flex-wrap: wrap;
-//   & > * {
-//     flex-grow: 1;
-//     flex-shrink: 1;
-//   }
-// }
+$breakpoints: (
+  'small': 600px,
+  'medium': 900px,
+  'large': 1200px
+);
 
-// @each $cmp_count in map-values($map: $component-count) {
-//   .cx-layout-#{$cmp_count}-horizontal-components {
-//     @extend .cx-layout-horizontal;
+@mixin horizontal-layout($components-per-row) {
+  display: flex;
+  flex-wrap: wrap;
+  & > * {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: unquote((100 / $components-per-row) + '%');
+    max-width: unquote((100 / $components-per-row) + '%');
+  }
+}
 
-//     & > * {
-//       flex-basis: unquote((100 / $cmp_count) + '%');
-//       max-width: unquote((100 / $cmp_count) + '%');
-//     }
-//   }
-// }
+.test-layout {
+  @include horizontal-layout(1);
 
-//.cx-layout-4-horizontal-components-md
+  @include cx-breakpoint-up(sm) {
+    @include horizontal-layout(2);
+  }
+  @include cx-breakpoint-up(md) {
+    @include horizontal-layout(3);
+  }
+  @include cx-breakpoint-up(lg) {
+    @include horizontal-layout(4);
+  }
+  @include cx-breakpoint-up(xl) {
+    @include horizontal-layout(6);
+  }
+}
+
 // work on SPA github
 // responsive classes
 // test in home page for example
@@ -80,167 +98,46 @@
 // class for page break/new row
 // checkout smart layout wiki
 
-// .cx-layout2 {
-//   display: flex;
-//   flex-direction: column;
-// }
-// //------------------------
+.cx-layout2 {
+  display: flex;
+  flex-direction: column;
+}
+//------------------------
 
-// .layour-wrapper {
-//   margin: 20px 0;
-//   max-width: 50%;
-//   border: 3px dashed lightcyan;
-// }
-
-// .image {
-//   height: 400px;
-// }
-
-// .image1 {
-//   background-image: url('https://placeimg.com/1200/400/arch');
-// }
-// .image2 {
-//   background-image: url('https://placeimg.com/1200/400/tech');
-// }
-// .image3 {
-//   background-image: url('https://placeimg.com/1200/400/nature');
-// }
-// .image4 {
-//   background-image: url('https://placeimg.com/1200/400/animals');
-// }
-// .image5 {
-//   background-image: url('https://placeimg.com/1200/400/people');
-// }
-// .image6 {
-//   background-image: url('https://placeimg.com/1200/400/nature/sepia');
-// }
-// .image7 {
-//   background-image: url('https://placeimg.com/2000/400/animals/grayscale');
-// }
-// .image8 {
-//   background-image: url('https://placeimg.com/2000/400/tech/sepia');
-// }
-// .image9 {
-//   background-image: url('https://placeimg.com/2000/400/people/sepia');
-// }
-
-// delete after testing
-$breakpoints: (
-  'small': 600px,
-  'medium': 900px,
-  'large': 1200px
-);
-$default-breakpoint: root;
-$current-breakpoint: $default-breakpoint;
-// $current-breakpoint-low: $default-breakpoint;
-// $current-breakpoint-up: $default-breakpoint;
-
-// Caching existing placeholders
-// Not meant to be manually edited
-$placeholders: ();
-
-// @mixin breakpoint($lower, $upper) {
-//   $lower-value: cx-breakpoint-min($lower, $breakpoints);
-//   $upper-value: cx-breakpoint-max($upper, $breakpoints);
-
-//   @warn "> between >`#{$lower-value}-#{$upper-value}`";
-
-//   @if $lower-value != null and $upper-value != null {
-//     $current-breakpoint-up: $upper-value !global;
-//     $current-breakpoint-low: $lower-value !global;
-//     @media (min-width: $lower-value) and (max-width: $upper-value) {
-//       @content;
-//     }
-//     $current-breakpoint-up: $default-breakpoint !global;
-//     $current-breakpoint-low: $default-breakpoint !global;
-//   } @else if $upper-value == null {
-//     $current-breakpoint-low: $lower-value !global;
-//     @media (min-width: $lower-value) {
-//       @content;
-//     }
-//     $current-breakpoint-low: $default-breakpoint !global;
-//   } @else if $lower-value == null {
-//     $current-breakpoint-up: $upper-value !global;
-//     @media (max-width: $upper-value) {
-//       @content;
-//     }
-//     $current-breakpoint-low: $default-breakpoint !global;
-//   }
-// }
-
-@mixin breakpoint($breakpoint) {
-  $value: map-get($breakpoints, $breakpoint);
-
-  @if $value != null {
-    $current-breakpoint: $breakpoint !global;
-    @media (min-width: $value) {
-      @content;
-    }
-    $current-breakpoint: $default-breakpoint !global;
-  } @else {
-    @warn "Invalid breakpoint `#{$breakpoint}`.";
-  }
+.layour-wrapper {
+  margin: 20px 0;
+  max-width: 50%;
+  border: 3px dashed lightcyan;
 }
 
-@mixin placeholder($name) {
-  @if not index($placeholders, $name) {
-    $placeholders: append($placeholders, $name) !global;
-
-    @at-root {
-      @each $breakpoint, $value in $breakpoints {
-        @media (min-width: $value) {
-          %#{$name}-#{$breakpoint} {
-            @content;
-          }
-        }
-      }
-
-      %#{$name}-#{$default-breakpoint} {
-        @content;
-      }
-    }
-  }
+.image {
+  height: 400px;
 }
 
-@mixin _($name) {
-  //@warn "-------->>>`#{$current-breakpoint-up}`";
-  //@warn "-------->>>`#{$name}-#{$current-breakpoint-up}`";
-  //@warn "-------->>>`#{$name}-#{$current-breakpoint-low}`";
-
-  // @if $current-breakpoint-up != root {
-  //   @extend %#{$name}-#{$current-breakpoint-up} !optional;
-  // }
-
-  // @extend %#{$name}-#{$current-breakpoint-low} !optional;
-  @extend %#{$name}-#{$current-breakpoint} !optional;
+.image1 {
+  background-image: url('https://placeimg.com/640/400/arch');
 }
-
-@include placeholder('cx-layout-3') {
-  border: 3px dashed pink;
+.image2 {
+  background-image: url('https://placeimg.com/640/400/tech');
 }
-@include placeholder('cx-layout-1') {
-  border: 3px dashed yellow;
+.image3 {
+  background-image: url('https://placeimg.com/640/400/nature');
 }
-@include placeholder('cx-layout-2') {
-  border: 3px dashed blue;
+.image4 {
+  background-image: url('https://placeimg.com/640/400/animals');
 }
-@include placeholder('cx-layout-4') {
-  border: 3px dashed black;
+.image5 {
+  background-image: url('https://placeimg.com/640/400/people');
 }
-
-.c {
-  & {
-    @include _(cx-layout-4);
-  }
-
-  @include breakpoint(small) {
-    @include _(cx-layout-3);
-  }
-
-  @include breakpoint(medium) {
-    @include _(cx-layout-1);
-  }
-  @include breakpoint(large) {
-    @include _(cx-layout-2);
-  }
+.image6 {
+  background-image: url('https://placeimg.com/640/400/nature/sepia');
+}
+.image7 {
+  background-image: url('https://placeimg.com/2000/400/animals/grayscale');
+}
+.image8 {
+  background-image: url('https://placeimg.com/2000/400/tech/sepia');
+}
+.image9 {
+  background-image: url('https://placeimg.com/2000/400/people/sepia');
 }
