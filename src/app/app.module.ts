@@ -8,6 +8,8 @@ import { TypographyComponent } from './typography/typography.component';
 import { IconMapperDirective } from './icon-mapper.directive';
 import { LayoutComponent } from './layout/layout.component';
 import { ICON_CONFIG, IconConfig } from './icon.config';
+import { Image1Component } from './layout/image1/image1.component';
+import { Image2Component } from './layout/image2/image2.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ICON_CONFIG, IconConfig } from './icon.config';
     ButtonsComponent,
     TypographyComponent,
     IconMapperDirective,
-    LayoutComponent
+    LayoutComponent,
+    Image1Component,
+    Image2Component
   ],
   imports: [BrowserModule],
 
