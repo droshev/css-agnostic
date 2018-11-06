@@ -3,7 +3,8 @@ import {
   Inject,
   OnInit,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { LoaderService } from '../loader/loader.service';
@@ -11,7 +12,8 @@ import { LoaderService } from '../loader/loader.service';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('dynamic', {
