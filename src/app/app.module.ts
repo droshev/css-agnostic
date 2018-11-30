@@ -7,6 +7,7 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { TypographyComponent } from './typography/typography.component';
 import { IconMapperDirective } from './icon-mapper.directive';
 import { LayoutComponent } from './layout/layout.component';
+import { IconsComponent } from './icons/icons.component';
 import { ICON_CONFIG, IconConfig } from './icon.config';
 import { Image1Component } from './layout/image1/image1.component';
 import { Image2Component } from './layout/image2/image2.component';
@@ -21,7 +22,8 @@ import { LoaderService } from './loader/loader.service';
     IconMapperDirective,
     LayoutComponent,
     Image1Component,
-    Image2Component
+    Image2Component,
+    IconsComponent
   ],
   imports: [BrowserModule],
 

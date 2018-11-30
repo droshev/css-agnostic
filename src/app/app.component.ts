@@ -33,5 +33,5 @@ export class AppComponent {
     }
   ];
   activeUI = this.systems[0].label;
-  activePanel = 'layout';
+  activePanel = 'icons';
 }
